@@ -1,4 +1,4 @@
-import pywasm
+import tinypywasm
 # pywasm.on_debug()
 
 
@@ -8,10 +8,10 @@ def _fib(n):
     return _fib(n - 1) + _fib(n - 2)
 
 
-def fib(_: pywasm.Store, n: int):
+def fib(_: tinypywasm.Store, n: int):
     return _fib(n)
 
 
-runtime = pywasm.load('./examples/env.wasm', {'env': {'fib': fib}})
+runtime = tinypywasm.load('./examples/env.wasm', {'env': {'fib': fib}})
 r = runtime.exec('get', [10])
 print(r)  # 55

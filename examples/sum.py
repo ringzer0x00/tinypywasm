@@ -1,4 +1,4 @@
-import pywasm
+import tinypywasm
 # pywasm.on_debug()
 
 runtime = pywasm.load('./examples/sum.wasm')

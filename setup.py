@@ -6,16 +6,16 @@ with open(os.path.join(root, 'README.md')) as f:
     long_description = f.read()
 
 setuptools.setup(
-    name='pywasm',
-    version='1.0.7',
-    url='https://github.com/mohanson/pywasm',
+    name='tinypywasm',
+    version='1.0.0',
+    url='https://github.com/ringzer0x00/tinypywasm',
     license='MIT',
-    author='mohanson',
-    author_email='mohanson@outlook.com',
-    description='WebAssembly Interpreter by pure Python',
+    author='ringzer0x00',
+    author_email='mattia.paccamiccio@unicam.it',
+    description='TinyWASM Interpreter',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    packages=['pywasm'],
+    packages=['tinypywasm'],
     python_requires='>=3.6',
     install_requires=['numpy'],
 )

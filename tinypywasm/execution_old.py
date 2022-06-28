@@ -1922,7 +1922,6 @@ def _make_instruction_table():
     table[instruction.f64_div] = ArithmeticLogicUnit.f64_div
     table[instruction.f64_min] = ArithmeticLogicUnit.f64_min
     table[instruction.f64_max] = ArithmeticLogicUnit.f64_max
-    table[instruction.f64_copysign] = ArithmeticLogicUnit.f64_copysign
     table[instruction.i32_wrap_i64] = ArithmeticLogicUnit.i32_wrap_i64
     table[instruction.i32_trunc_sf32] = ArithmeticLogicUnit.i32_trunc_sf32
     table[instruction.i32_trunc_uf32] = ArithmeticLogicUnit.i32_trunc_uf32

@@ -854,7 +854,7 @@ class Locals:
     #
     # locals ::= n:u32 t:valtype ⇒ tn
     def __init__(self):
-        self.n: int = 0x00
+        self.n: int = 0x00 #todo -> abstractize
         self.type: ValueType = ValueType()
 
     def __repr__(self):
@@ -863,7 +863,7 @@ class Locals:
     @classmethod
     def from_reader(cls, r: typing.BinaryIO):
         o = Locals()
-        o.n = leb128.u.decode_reader(r)[0]
+        o.n = leb128.u.decode_reader(r)[0] #todo -> abstractize
         if o.n > 0x10000000:
             raise Exception('pywasm: too many locals')
         o.type = ValueType.from_reader(r)

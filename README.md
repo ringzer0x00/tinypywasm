@@ -1,62 +1,46 @@
-# pywasm: A WebAssembly interpreter written in pure Python.
+# TinyPYWasm
 
-[![Build Status](https://travis-ci.org/mohanson/pywasm.svg?branch=master)](https://travis-ci.org/mohanson/pywasm)
+Based on [pywasm](https://github.com/mohanson/pywasm)
 
-A WebAssembly interpreter written in pure Python.
-
-The wasm version currently in use is: [WebAssembly Core Specification, W3C Recommendation, 5 December 2019](https://www.w3.org/TR/wasm-core-1/). Just like Firefox or Chrome does.
-
-# Installation
-
-```sh
-$ pip3 install pywasm
-```
-
-# Some simple examples
-
-1. First we need a wasm module! Grab our `./examples/fib.wasm` file and save a copy in a new directory on your local machine. Note: `fib.wasm` was compiled from `./examples/fib.c` by [WasmFiddle](https://wasdk.github.io/WasmFiddle/).
-
-2. Now, compile and instantiate WebAssembly modules directly from underlying sources. This is achieved using the `pywasm.load` method.
-
-```py
-import pywasm
-# pywasm.on_debug()
-
-runtime = pywasm.load('./examples/fib.wasm')
-r = runtime.exec('fib', [10])
-print(r) # 55
-```
-
-A brief description for `./examples`
-
-| File                | Description                                  |
-|---------------------|----------------------------------------------|
-| ./examples/add.wasm | Export i32.add function                      |
-| ./examples/env.wasm | Call python/native function in wasm          |
-| ./examples/fib.wasm | Fibonacci, which contains loop and recursion |
-| ./examples/str.wasm | Export a function which returns string       |
-| ./examples/sum.wasm | Equal difference series summation            |
-
-Of course there are some more complicated examples!
-
-- Zstandard decompression algorithm: [https://github.com/dholth/zstdpy](https://github.com/dholth/zstdpy)
-- Run AssemblyScript on pywasm: [https://github.com/mohanson/pywasm_assemblyscript](https://github.com/mohanson/pywasm_assemblyscript)
-
-# Test
-
-```sh
-$ python3 ./test/test_spec.py
-```
-
-Tested in the following environments:
-
-- Python >= 3.6
-
-# Thanks
-
-- [wagon](https://github.com/go-interpreter/wagon)
-- [warpy](https://github.com/kanaka/warpy)
+Interpreter for TinyWASM, a (Turing complete) subset of WebAssembly written in pure Python for experimental purposes.
+It supports signed i32 __ONLY__.
+The enabled test cases on examples are working, the spec test suite is to be refactored to include i32 test cases only. 
 
 # License
 
 [MIT](./LICENSE)
+
+# TinyWASM syntax:
+
+```
+module ::= (module type* func* table)`
+    type ::= (type $tname (func ft))
+    bt, ft ::= t* → t*
+    t ::= i32 
+    func ::= (func $fname $tname) 
+            | (func $fname $tname (param t*) (result t*) instr*) 
+    memory ::= (memory ns)
+                | (memory ns nmax)
+    table ::= (table n*) 
+    instr ::= data | control 
+        data ::= drop 
+                | t.const n 
+                | t.binop 
+                | t.unop
+                | local.get $var 
+                | local.set $var
+                | global.get $var 
+                | global.set $var 
+                | load 
+                | store 
+        control ::= block bt instr* end 
+                | loop bt instr* end
+                | call ft 
+                | call_indirect ft 
+                | br_if l
+                | return
+
+n, l, tidx, ns, nmax, bt, ft ::= number
+$var, $fname, $tname ::= label
+
+```

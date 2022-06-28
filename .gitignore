@@ -9,3 +9,9 @@ dist/
 .pytest_cache/
 
 /res/testsuite
+.gitignore
+./tinypywasm/execution_old.py
+
+
+res/
+script/
