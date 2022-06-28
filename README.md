@@ -22,8 +22,7 @@ module ::= (module type* func* table)`
                 | (memory ns nmax)
     table ::= (table n*) 
     instr ::= data | control 
-        data ::= drop 
-                | t.const n 
+        data ::=  t.const n 
                 | t.binop 
                 | t.unop
                 | local.get $var 
