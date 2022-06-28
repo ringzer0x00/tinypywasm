@@ -4,7 +4,6 @@ Based on [pywasm](https://github.com/mohanson/pywasm)
 
 Interpreter for TinyWASM, a (Turing complete) subset of WebAssembly written in pure Python for experimental purposes.
 It supports signed i32 __ONLY__.
-The enabled test cases on examples are working, the spec test suite is to be refactored to include i32 test cases only. 
 
 # License
 
